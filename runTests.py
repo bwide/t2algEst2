@@ -1,8 +1,9 @@
-import sys
+import time
 import os
-import subprocess
 
 for file in sorted(os.listdir("tests/")):
     print("running test: " + file)
     path = "tests/" + file
-    os.system("time python3 t2.py " + path)
+    start_time = time.time()
+    os.system("python3 t2.py " + path)
+    print("--- %s seconds ---" % (time.time() - start_time))
