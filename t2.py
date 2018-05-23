@@ -47,6 +47,10 @@ def find_first_node_in(graph): # check if node is referenced in any <__> list
     return None
 
 def calculate_cost(node):
+
+    global calls
+    calls += 1
+
     cost = costs[node]
 
     if node in totalCosts: return totalCosts[node]
@@ -61,15 +65,18 @@ def calculate_cost(node):
     totalCosts[node] = cost
     return cost
 
-sys.setrecursionlimit(1000000)
+sys.setrecursionlimit(28953)
+
 with open(path) as file:
     costs, graph = read_file(file)
-
+    
     first_node = find_first_node_in(graph)
 
     totalCosts = {}
-    
+    calls = 0
+
     ans = calculate_cost(first_node)
 
-    print("total cost: " + str(ans) )
+    print("total calls: " + str(calls))
+    print("total cost: " + str(ans))
 
